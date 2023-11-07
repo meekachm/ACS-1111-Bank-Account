@@ -1,10 +1,15 @@
+# Import random module to generate random account numbers
 import random
 
 class BankAccount:
-    def __init__(self, full_name):
+    def __init__(self, full_name, account_type, account_number=None):
         # Initialize account properties
         self.full_name = full_name
-        self.account_number = self.generate_account_number()  # Generate an 8 digit number account number
+        self.account_type = account_type
+        if account_number is None:
+            self.account_number = self.generate_account_number()
+        else:
+            self.account_number = account_number
         self.balance = 0.0  # Initial balance = zero
 
     # Generate a random 8-digit account number
@@ -31,7 +36,7 @@ class BankAccount:
                 return "Insufficient funds: $10 overdraft fee charged."
         else:
             return "Invalid withdrawal amount."
-
+        
     # Print message and return current balance
     def get_balance(self):
         message = f"Account balance: ${self.balance:.2f}"
@@ -41,7 +46,11 @@ class BankAccount:
     # Add monthly interest to balance, display updated balance, or notify if no interest is due
     def add_interest(self):
         if self.balance >= 1:
-            monthly_interest = self.balance * 0.00083  # Calculate monthly interest based on the provided formula
+            # Stretch Challenges 1. Add an attribute to set the account type: checking or savings.
+            if self.account_type == "Savings":
+                monthly_interest = self.balance * 0.012
+            elif self.account_type == "Checking":
+                monthly_interest = self.balance * 0.00083  # Calculate monthly interest based on the provided formula
             self.balance += monthly_interest
             return f"Monthly interest: ${monthly_interest:.2f}.\nNew balance: ${self.balance:.2f}"
         else:
@@ -49,5 +58,5 @@ class BankAccount:
 
     # Print statement with the account holder's name, partially hidden account number, and current balance
     def print_statement(self):
-        statement = f"{self.full_name}\nAccount Type: {self.account_type}\nAccount No.: ****{self.account_number[-4:]}\nBalance: ${self.balance:.2f}"
+        statement = f"{self.full_name}\nAccount No.: ****{self.account_number[-4:]}\nBalance: ${self.balance:.2f}"
         return statement
