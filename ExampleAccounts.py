@@ -1,6 +1,9 @@
 # Import the BankAccount class
 from BankAccount import BankAccount
 
+# Stretch Challenges 2: Create a list called: bank. 
+bank = []
+
 # 5. Define 3 different bank account examples using various methods
 # Example 1: Create a new bank account for "Haruki Nakamura"
 haruki_account = BankAccount("Haruki Nakamura")
@@ -30,6 +33,12 @@ weili_account.withdraw(600)  # Make a withdrawal
 weili_account.get_balance()  # Get the account balance
 
 
+# Stretch Challenges 2: Add all accounts to the "bank" list
+bank.append(haruki_account)
+bank.append(hyejin_account)
+bank.append(weili_account)
+
+
 # 6. Creating a new bank account for "Mitchell" with an initial balance of $0
 mitchell_account = BankAccount("Mitchell", account_number="03141592")
 # Depositing $400,000 into "Mitchell's" account
@@ -44,3 +53,29 @@ mitchell_account.print_statement()
 mitchell_account.withdraw(150)
 # Printing a statement
 mitchell_account.print_statement()
+
+
+# Stretch Challenges 1: Print a statement for each account
+# Example 1: Saving Account for "Wirakorn Suwan"
+wirakorn_account = BankAccount("Wirakorn Suwan", "Savings")
+wirakorn_account.deposit(1200)
+wirakorn_account.add_interest()
+# Use print() to display the statement
+print(wirakorn_account.print_statement())
+
+# Example 2: Checking Account for "Kenji Suzuki"
+kenji_account = BankAccount("Kenji Suzuki", "Checking")
+kenji_account.deposit(650)
+kenji_account.add_interest()
+# Use print() to display the statement
+print(kenji_account.print_statement())
+
+
+# Stretch Challenges 2: Function that loops over all accounts in the "bank" list 
+# and calls the add interest
+def add_interest_to_accounts(bank):
+    for account in bank:
+        account.add_interest()
+
+# Call the function to add interest to all accounts in the "bank" list
+add_interest_to_accounts(bank)
