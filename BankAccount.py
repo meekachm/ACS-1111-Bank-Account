@@ -58,5 +58,5 @@ class BankAccount:
 
     # Print statement with the account holder's name, partially hidden account number, and current balance
     def print_statement(self):
-        statement = f"{self.full_name}\nAccount No.: ****{self.account_number[-4:]}\nBalance: ${self.balance:.2f}\n"
+        statement = f"{self.full_name}\nAccount No.: ****{(self.account_number)[-4:]}\nBalance: ${self.balance:.2f}\n"
         return statement
